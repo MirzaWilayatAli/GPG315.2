@@ -1,0 +1,608 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e807d70238db3ae40ab6445c1cff7c98, type: 3}
+  m_Name: DatabaseAsset
+  m_EditorClassIdentifier: 
+  assets:
+  - guid: b2d4a24794beab34aa0c8d73bda1f552
+    assetPath: Assets/Audio/JazzMusic.ogg
+    assetName: JazzMusic
+    assetType: OGG
+    fileSizeBytes: 2310246
+    audioLengthSeconds: 200.34134
+    tags: []
+    category: Audio
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: c5cd61575a858ce4b96565a12e31a229
+    assetPath: Assets/Audio/loadup_sound.wav
+    assetName: loadup_sound
+    assetType: WAV
+    fileSizeBytes: 1523870
+    audioLengthSeconds: 5.2909374
+    tags: []
+    category: Audio
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: e6ef58a791cbf3c47ac25ae82360a8f5
+    assetPath: Assets/Audio/Male-short-scream.wav
+    assetName: Male-short-scream
+    assetType: WAV
+    fileSizeBytes: 247300
+    audioLengthSeconds: 1.4014059
+    tags: []
+    category: Audio
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 0c0ac1eaf4ac09745a02b728ce96579b
+    assetPath: Assets/Audio/Police-duty-belt.wav
+    assetName: Police-duty-belt
+    assetType: WAV
+    fileSizeBytes: 1528016
+    audioLengthSeconds: 5.3052917
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: c6ee0c12b3d647542ab08591f241cceb
+    assetPath: Assets/Audio/Police-radio-chatter-noise-complaint.wav
+    assetName: Police-radio-chatter-noise-complaint
+    assetType: WAV
+    fileSizeBytes: 1499192
+    audioLengthSeconds: 7.8078127
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: b6fa01a23da534149936ff6a37808307
+    assetPath: Assets/Audio/Police-taser.wav
+    assetName: Police-taser
+    assetType: WAV
+    fileSizeBytes: 403694
+    audioLengthSeconds: 1.4013958
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: d38c94bdb8654fe4dbe3acc1bf225726
+    assetPath: Assets/Audio/prison-lock.wav
+    assetName: prison-lock
+    assetType: WAV
+    fileSizeBytes: 397288
+    audioLengthSeconds: 2.0687292
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 9d0ba92c13ce4d24c907ad91fbb19db2
+    assetPath: Assets/Audio/Prisoner-handcuffs.wav
+    assetName: Prisoner-handcuffs
+    assetType: WAV
+    fileSizeBytes: 105794
+    audioLengthSeconds: 0.36702085
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 2fd4ecbe0352bb34299f8337f87b7850
+    assetPath: Assets/Audio/Sci-fi-alarm-siren-single.wav
+    assetName: Sci-fi-alarm-siren-single
+    assetType: WAV
+    fileSizeBytes: 506200
+    audioLengthSeconds: 2.6359792
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: e807d70238db3ae40ab6445c1cff7c98
+    assetPath: Assets/Editor/AssetManager/AssetDatabaseAsset.cs
+    assetName: AssetDatabaseAsset
+    assetType: MonoScript
+    fileSizeBytes: 590
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants:
+    - bd0fae8a147ab9d4487e948eebeb25d1
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 374b6d64fb5af6b45905b55fb577d346
+    assetPath: Assets/Editor/AssetManager/AssetDatabaseUtility.cs
+    assetName: AssetDatabaseUtility
+    assetType: MonoScript
+    fileSizeBytes: 854
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 9c1e6d1266367ed4c8781704f4faca11
+    assetPath: Assets/Editor/AssetManager/AssetIndexer.cs
+    assetName: AssetIndexer
+    assetType: MonoScript
+    fileSizeBytes: 6882
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 816092842bff40443ae74183efefe671
+    assetPath: Assets/Editor/AssetManager/AssetManagerToolWindow.cs
+    assetName: AssetManagerToolWindow
+    assetType: MonoScript
+    fileSizeBytes: 20424
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 75a0e73936d92914a9337bb9b90e1f61
+    assetPath: Assets/Editor/AssetManager/AssetMetaData.cs
+    assetName: AssetMetaData
+    assetType: MonoScript
+    fileSizeBytes: 1265
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: bd0fae8a147ab9d4487e948eebeb25d1
+    assetPath: Assets/Editor/AssetManager/DatabaseAsset.asset
+    assetName: DatabaseAsset
+    assetType: AssetDatabaseAsset
+    fileSizeBytes: 14684
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies:
+    - e807d70238db3ae40ab6445c1cff7c98
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: c2911971d53c7734386bfbb1d789346e
+    assetPath: Assets/Prefab/Cube.prefab
+    assetName: Cube
+    assetType: GameObject
+    fileSizeBytes: 3095
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants:
+    - 99c9720ab356a0642a771bea13969a05
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 8105016687592461f977c054a80ce2f2
+    assetPath: Assets/Readme.asset
+    assetName: Readme
+    assetType: asset
+    fileSizeBytes: 1144
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 99c9720ab356a0642a771bea13969a05
+    assetPath: Assets/Scenes/SampleScene.unity
+    assetName: SampleScene
+    assetType: SceneAsset
+    fileSizeBytes: 13853
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies:
+    - c2911971d53c7734386bfbb1d789346e
+    - 10fc4df2da32a41aaa32d77bc913491c
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: de38f684984f0dc44a2b477ade3564d7
+    assetPath: Assets/Scripts/DummyPlaceholderScript1.cs
+    assetName: DummyPlaceholderScript1
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 504fd26e5210230478b02f5fd1d3aaa2
+    assetPath: Assets/Scripts/DummyPlaceholderScript2.cs
+    assetName: DummyPlaceholderScript2
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: c273b779a5d4be043aa93ce0cfa36bd6
+    assetPath: Assets/Scripts/DummyPlaceholderScript3.cs
+    assetName: DummyPlaceholderScript3
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: ae1debfa6834f8b4e9e26f18d3c14d41
+    assetPath: Assets/Scripts/DummyPlaceholderScript4.cs
+    assetName: DummyPlaceholderScript4
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 3d54a6672b422c046b117da2920369ec
+    assetPath: Assets/Scripts/DummyPlaceholderScript5.cs
+    assetName: DummyPlaceholderScript5
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 90a99d7d29790974686aff39e80fe349
+    assetPath: Assets/Scripts/DummyPlaceholderScript6.cs
+    assetName: DummyPlaceholderScript6
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: aeef515b9db057641a79b5d501264fe7
+    assetPath: Assets/Scripts/DummyPlaceholderScript7.cs
+    assetName: DummyPlaceholderScript7
+    assetType: MonoScript
+    fileSizeBytes: 310
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: ab09877e2e707104187f6f83e2f62510
+    assetPath: Assets/Settings/DefaultVolumeProfile.asset
+    assetName: DefaultVolumeProfile
+    assetType: VolumeProfile
+    fileSizeBytes: 23987
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants:
+    - 18dc0cd2c080841dea60987a38ce93fa
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 65bc7dbf4170f435aa868c779acfb082
+    assetPath: Assets/Settings/Mobile_Renderer.asset
+    assetName: Mobile_Renderer
+    assetType: UniversalRendererData
+    fileSizeBytes: 1713
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants:
+    - 5e6cbd92db86f4b18aec3ed561671858
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 5e6cbd92db86f4b18aec3ed561671858
+    assetPath: Assets/Settings/Mobile_RPAsset.asset
+    assetName: Mobile_RPAsset
+    assetType: UniversalRenderPipelineAsset
+    fileSizeBytes: 4345
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies:
+    - 65bc7dbf4170f435aa868c779acfb082
+    - 10fc4df2da32a41aaa32d77bc913491c
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: f288ae1f4751b564a96ac7587541f7a2
+    assetPath: Assets/Settings/PC_Renderer.asset
+    assetName: PC_Renderer
+    assetType: UniversalRendererData
+    fileSizeBytes: 3439
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants:
+    - 4b83569d67af61e458304325a23e5dfd
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 4b83569d67af61e458304325a23e5dfd
+    assetPath: Assets/Settings/PC_RPAsset.asset
+    assetName: PC_RPAsset
+    assetType: UniversalRenderPipelineAsset
+    fileSizeBytes: 4364
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies:
+    - f288ae1f4751b564a96ac7587541f7a2
+    - 10fc4df2da32a41aaa32d77bc913491c
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 10fc4df2da32a41aaa32d77bc913491c
+    assetPath: Assets/Settings/SampleSceneProfile.asset
+    assetName: SampleSceneProfile
+    assetType: VolumeProfile
+    fileSizeBytes: 3703
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants:
+    - 99c9720ab356a0642a771bea13969a05
+    - 5e6cbd92db86f4b18aec3ed561671858
+    - 4b83569d67af61e458304325a23e5dfd
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 18dc0cd2c080841dea60987a38ce93fa
+    assetPath: Assets/Settings/UniversalRenderPipelineGlobalSettings.asset
+    assetName: UniversalRenderPipelineGlobalSettings
+    assetType: UniversalRenderPipelineGlobalSettings
+    fileSizeBytes: 21651
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies:
+    - ab09877e2e707104187f6f83e2f62510
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 4d6e9f9e02b65ef4bb5025f09f0ece0d
+    assetPath: Assets/Texture/confirmationMsgPanelBG.png
+    assetName: confirmationMsgPanelBG
+    assetType: Texture2D
+    fileSizeBytes: 8380
+    audioLengthSeconds: 0
+    tags:
+    - sprites
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: cacaf61a8807b9b428e6bc7b07f98ba3
+    assetPath: Assets/Texture/PlayArea.png
+    assetName: PlayArea
+    assetType: Texture2D
+    fileSizeBytes: 13050
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: b63b2a107eee9a74eae4626567dd1c10
+    assetPath: Assets/Texture/QuestionMarkPNGUnpressed.png
+    assetName: QuestionMarkPNGUnpressed
+    assetType: Texture2D
+    fileSizeBytes: 14911
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
+  - guid: 8ace90ef12fac474295d0a43a98a6aa5
+    assetPath: Assets/Texture/QuestionMarkPressed.png
+    assetName: QuestionMarkPressed
+    assetType: Texture2D
+    fileSizeBytes: 15379
+    audioLengthSeconds: 0
+    tags: []
+    category: 
+    customField1Label: Designer
+    customField1Value: 
+    customField2Label: Notes
+    customField2Value: 
+    directDependencies: []
+    directDependants: []
+    vcsStatus: 
+    vcsSystem: 
