@@ -1,37 +1,34 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class AssetMetadata
 {
-    public string guid;            // Unity GUID, stable even if path changes
-    public string assetPath;       // For convenience
+    public string guid;
+    public string assetPath;
     public string assetName;
-    public string assetType;       // e.g. "Texture2D", "Prefab"
+    public string assetType;
 
-    // NEW: file info
-    public long fileSizeBytes;         // raw size in bytes
-    public float audioLengthSeconds;   // > 0 for audio clips only
+    public long fileSizeBytes;
+    public float audioLengthSeconds;
 
     // Tagging & categorisation
     public List<string> tags = new List<string>();
     public string category;
 
-    // Custom fields (simple version)
+    // Some Custom fields
     public string customField1Label = "Designer";
     public string customField1Value;
     public string customField2Label = "Notes";
     public string customField2Value;
 
-    // Dependency info (cached)
+    // Dependency info
     public List<string> directDependencies = new List<string>();
     public List<string> directDependants = new List<string>(); // who references this
 
-    // Version control info (simple)
-    public string vcsStatus;   // "Modified", "Unversioned", "Clean", etc.
-    public string vcsSystem;   // "Git", "Perforce", "None"
-
-    // Perf / housekeeping
+    // Version control info
+    public string vcsStatus;
+    public string vcsSystem;
+    
     public DateTime lastIndexed;
 }

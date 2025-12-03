@@ -4,8 +4,7 @@ using UnityEngine;
 public class AssetDatabaseAsset : ScriptableObject
 {
     public List<AssetMetadata> assets = new List<AssetMetadata>();
-
-    // quick lookup cache (guid -> metadata index)
+    
     public Dictionary<string, int> BuildIndex()
     {
         var dictionary = new Dictionary<string, int>();

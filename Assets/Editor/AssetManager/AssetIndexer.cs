@@ -1,25 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public static class AssetIndexer
 {
     public static void RebuildIndex(bool onlySelectedFolders = false)
     {
-        var db = AssetDatabaseUtility.LoadOrCreateDatabase();
+        AssetDatabaseAsset db = AssetDatabaseUtility.LoadOrCreateDatabase();
 
         // 1) Cache old metadata by GUID so we can preserve tags etc.
-        var oldByGuid = new Dictionary<string, AssetMetadata>();
+        Dictionary<string, AssetMetadata> oldMetaDataByGuid = new Dictionary<string, AssetMetadata>();
+
         if (db.assets != null)
         {
-            foreach (var meta in db.assets)
+            for (int i = 0; i < db.assets.Count; i++)
             {
+                AssetMetadata meta = db.assets[i];
                 if (meta != null && !string.IsNullOrEmpty(meta.guid))
                 {
-                    oldByGuid[meta.guid] = meta;
+                    // last wins, but that should not matter
+                    oldMetaDataByGuid[meta.guid] = meta;
                 }
             }
         }
@@ -32,98 +34,115 @@ public static class AssetIndexer
 
         if (onlySelectedFolders)
         {
-            var selected = GetSelectedFolders();
-            searchInFolders = (selected != null && selected.Length > 0)
-                ? selected
-                : new[] { "Assets" }; // fallback
+            string[] selected = GetSelectedFolders();
+            if (selected != null && selected.Length > 0)
+            {
+                searchInFolders = selected;
+            }
+            else
+            {
+                // Fallback
+                searchInFolders = new string[] { "Assets" };
+            }
         }
         else
         {
             // Hard-lock to Assets root only
-            searchInFolders = new[] { "Assets" };
+            searchInFolders = new string[] { "Assets" };
         }
 
         string[] guids = AssetDatabase.FindAssets("", searchInFolders);
 
-        foreach (var guid in guids)
+        for (int i = 0; i < guids.Length; i++)
         {
+            string guid = guids[i];
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            
-            // Skip folders entirely (do not index them)
+
+            // Skip folders entirely
             if (AssetDatabase.IsValidFolder(path))
+            {
                 continue;
+            }
 
             // Only care about stuff inside Assets
             if (!path.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
+            {
                 continue;
+            }
 
-            // Skip dlls if you want
-            if (path.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            // Skip dlls
+            /*if (path.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            {
                 continue;
+            }*/
 
             UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
 
-            string ext = System.IO.Path.GetExtension(path).ToLowerInvariant();
-
-
+            string ext = Path.GetExtension(path).ToLowerInvariant();
             string typeName;
-            bool isAudioExt = ext == ".wav" || ext == ".mp3" || ext == ".ogg" || ext == ".aiff" || ext == ".flac";
-
-            if (isAudioExt)
+            float audioLengthSeconds = 0f;
+            
+            if (ext == ".wav" || ext == ".mp3" || ext == ".ogg" || ext == ".aiff" || ext == ".flac")
             {
                 typeName = ext.TrimStart('.').ToUpper();
-            }
-            else
-            {
-                typeName = obj != null
-                    ? obj.GetType().Name
-                    : ext.TrimStart('.');
-            }
-
-
-            long fileSizeBytes = 0;
-            try
-            {
-                var fi = new FileInfo(path);   // path is "Assets/..." and project root is current dir
-                if (fi.Exists)
-                    fileSizeBytes = fi.Length;
-            }
-            catch
-            {
-                // ignore IO errors, keep as 0
-            }
-
-
-            float audioLengthSeconds = 0f;
-            if (isAudioExt)
-            {
-                var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+                AudioClip clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
                 if (clip != null)
                 {
                     audioLengthSeconds = clip.length;
                 }
             }
-
-            var meta = new AssetMetadata
+            else
             {
-                guid = guid,
-                assetPath = path,
-                assetName = obj != null
-                    ? obj.name
-                    : System.IO.Path.GetFileNameWithoutExtension(path),
-                assetType = typeName,
-                fileSizeBytes = fileSizeBytes,
-                audioLengthSeconds = audioLengthSeconds,
-                lastIndexed = DateTime.Now
-            };
+                if (obj != null)
+                {
+                    typeName = obj.GetType().Name;
+                }
+                else
+                {
+                    typeName = ext.TrimStart('.');
+                }
+            }
+            
+            long fileSizeBytes = 0;
+            try
+            {
+                FileInfo fileInfo = new FileInfo(path);
+                if (fileInfo.Exists)
+                {
+                    fileSizeBytes = fileInfo.Length;
+                }
+            }
+            catch
+            {
+                // ignore
+            }
 
-
+            // Build new metadata
+            AssetMetadata meta = new AssetMetadata();
+            meta.guid = guid;
+            meta.assetPath = path;
+            meta.assetName = (obj != null)
+                                      ? obj.name
+                                      : Path.GetFileNameWithoutExtension(path);
+            meta.assetType = typeName;
+            meta.fileSizeBytes = fileSizeBytes;
+            meta.audioLengthSeconds = audioLengthSeconds;
+            meta.lastIndexed = DateTime.Now;
 
             // 4) If we had metadata for this GUID before, copy over user-editable fields
-            if (oldByGuid.TryGetValue(guid, out var old))
+            AssetMetadata old;
+            if (oldMetaDataByGuid.TryGetValue(guid, out old) && old != null)
             {
                 // Tags & category
-                meta.tags = old.tags != null ? new List<string>(old.tags) : new List<string>();
+                if (old.tags != null)
+                {
+                    meta.tags = new List<string>(old.tags);
+                }
+                else
+                {
+                    meta.tags = new List<string>();
+                }
+
                 meta.category = old.category;
 
                 // Custom fields
@@ -136,56 +155,150 @@ public static class AssetIndexer
                 meta.vcsStatus = old.vcsStatus;
                 meta.vcsSystem = old.vcsSystem;
             }
+            else
+            {
+                // Make sure tags is at least an empty list so you don't get null refs
+                meta.tags = new List<string>();
+            }
 
             db.assets.Add(meta);
         }
-
-        // 5) Rebuild dependencies for the new list
+        
         BuildDependencies(db);
-
+        VersionControlIntegration.RefreshVersionControlInfo(db);
         EditorUtility.SetDirty(db);
         AssetDatabase.SaveAssets();
     }
 
     private static void BuildDependencies(AssetDatabaseAsset db)
     {
-        var guidToMeta = db.assets.ToDictionary(a => a.guid, a => a);
-
-        // Clear existing
-        foreach (var meta in db.assets)
+        if (db == null || db.assets == null)
         {
-            meta.directDependencies.Clear();
-            meta.directDependants.Clear();
+            return;
         }
 
-        // Forward deps
-        foreach (var meta in db.assets)
+        // Build a lookup from GUID to metadata
+        Dictionary<string, AssetMetadata> guidToMeta = new Dictionary<string, AssetMetadata>();
+
+        for (int i = 0; i < db.assets.Count; i++)
         {
-            string[] deps = AssetDatabase.GetDependencies(meta.assetPath, false);
-            foreach (var depPath in deps)
+            AssetMetadata meta = db.assets[i];
+            if (meta != null && !string.IsNullOrEmpty(meta.guid))
             {
-                // 🔒 Only care about dependencies that are also inside Assets/
-                if (!depPath.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                string depGuid = AssetDatabase.AssetPathToGUID(depPath);
-                if (string.IsNullOrEmpty(depGuid) || depGuid == meta.guid)
-                    continue;
-
-                if (!meta.directDependencies.Contains(depGuid))
-                    meta.directDependencies.Add(depGuid);
+                guidToMeta[meta.guid] = meta;
             }
         }
 
-        // Reverse deps (only between Assets/ entries)
-        foreach (var meta in db.assets)
+        // Clear existing dependencies
+        for (int i = 0; i < db.assets.Count; i++)
         {
-            foreach (var depGuid in meta.directDependencies)
+            AssetMetadata meta = db.assets[i];
+            if (meta == null)
             {
-                if (guidToMeta.TryGetValue(depGuid, out var depMeta))
+                continue;
+            }
+
+            if (meta.directDependencies == null)
+            {
+                meta.directDependencies = new List<string>();
+            }
+            else
+            {
+                meta.directDependencies.Clear();
+            }
+
+            if (meta.directDependants == null)
+            {
+                meta.directDependants = new List<string>();
+            }
+            else
+            {
+                meta.directDependants.Clear();
+            }
+        }
+
+        // Forward dependencies
+        for (int i = 0; i < db.assets.Count; i++)
+        {
+            AssetMetadata meta = db.assets[i];
+            if (meta == null)
+            {
+                continue;
+            }
+
+            string assetPath = meta.assetPath;
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                continue;
+            }
+
+            string[] deps = AssetDatabase.GetDependencies(assetPath, false);
+            if (deps == null)
+            {
+                continue;
+            }
+
+            for (int d = 0; d < deps.Length; d++)
+            {
+                string depPath = deps[d];
+
+                // Only care about dependencies that are also inside Assets/
+                if (!depPath.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!depMeta.directDependants.Contains(meta.guid))
-                        depMeta.directDependants.Add(meta.guid);
+                    continue;
+                }
+
+                string depGuid = AssetDatabase.AssetPathToGUID(depPath);
+                if (string.IsNullOrEmpty(depGuid))
+                {
+                    continue;
+                }
+
+                // Skip self
+                if (depGuid == meta.guid)
+                {
+                    continue;
+                }
+
+                if (!meta.directDependencies.Contains(depGuid))
+                {
+                    meta.directDependencies.Add(depGuid);
+                }
+            }
+        }
+
+        // Reverse dependencies (dependants)
+        for (int i = 0; i < db.assets.Count; i++)
+        {
+            AssetMetadata meta = db.assets[i];
+            if (meta == null)
+            {
+                continue;
+            }
+
+            if (meta.directDependencies == null)
+            {
+                continue;
+            }
+
+            for (int d = 0; d < meta.directDependencies.Count; d++)
+            {
+                string depGuid = meta.directDependencies[d];
+                AssetMetadata depMeta;
+
+                if (!guidToMeta.TryGetValue(depGuid, out depMeta) || depMeta == null)
+                {
+                    continue;
+                }
+
+                if (depMeta.directDependants == null)
+                {
+                    depMeta.directDependants = new List<string>();
+                }
+
+                if (!depMeta.directDependants.Contains(meta.guid))
+                {
+                    depMeta.directDependants.Add(meta.guid);
                 }
             }
         }
@@ -193,19 +306,28 @@ public static class AssetIndexer
 
     private static string[] GetSelectedFolders()
     {
-        var selection = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.Assets);
-        var folders = new List<string>();
-        foreach (var obj in selection)
-        {
-            string path = AssetDatabase.GetAssetPath(obj);
+        UnityEngine.Object[] selection = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.Assets);
+        List<string> folders = new List<string>();
 
-            // Only keep folders that are under Assets/
-            if (AssetDatabase.IsValidFolder(path) &&
-                path.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
+        if (selection != null)
+        {
+            for (int i = 0; i < selection.Length; i++)
             {
-                folders.Add(path);
+                UnityEngine.Object obj = selection[i];
+                if (obj == null)
+                {
+                    continue;
+                }
+
+                string path = AssetDatabase.GetAssetPath(obj);
+                if (AssetDatabase.IsValidFolder(path) &&
+                    path.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
+                {
+                    folders.Add(path);
+                }
             }
         }
+
         return folders.ToArray();
     }
 }
