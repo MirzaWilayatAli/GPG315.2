@@ -181,7 +181,7 @@ MonoBehaviour:
     directDependencies: []
     directDependants:
     - bd0fae8a147ab9d4487e948eebeb25d1
-    vcsStatus: Modified
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: 374b6d64fb5af6b45905b55fb577d346
     assetPath: Assets/Editor/AssetManager/AssetDatabaseUtility.cs
@@ -203,7 +203,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/AssetIndexer.cs
     assetName: AssetIndexer
     assetType: MonoScript
-    fileSizeBytes: 10472
+    fileSizeBytes: 10071
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -229,7 +229,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: 77aea50666c079f4b9de02ec4539f588
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowBatchTools.cs
@@ -245,13 +245,13 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: 816092842bff40443ae74183efefe671
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowCore.cs
     assetName: AssetManagerWindowCore
     assetType: MonoScript
-    fileSizeBytes: 3645
+    fileSizeBytes: 3455
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -261,7 +261,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: a355cf5fbdd2c7549865f0b97bdc3cf9
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowDetailsPanel.cs
@@ -277,7 +277,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: 78ad2519bdf76344fbeb25fdfde0f3ea
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowFiltersAndList.cs
@@ -293,7 +293,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: 0a2c0f1fb3626e14c9e95d3a9e6da6af
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowToolbar.cs
@@ -309,7 +309,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: 75a0e73936d92914a9337bb9b90e1f61
     assetPath: Assets/Editor/AssetManager/AssetMetaData.cs
@@ -348,7 +348,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/VersionControlIntegration.cs
     assetName: VersionControlIntegration
     assetType: MonoScript
-    fileSizeBytes: 3817
+    fileSizeBytes: 3750
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -358,7 +358,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Untracked
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: c2911971d53c7734386bfbb1d789346e
     assetPath: Assets/Prefab/Cube.prefab

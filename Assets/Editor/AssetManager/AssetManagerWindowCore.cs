@@ -7,33 +7,27 @@ using UnityEngine;
 public partial class AssetManagerWindow : EditorWindow
 {
     private AssetDatabaseAsset databaseAsset;
-
-    // Column widths
+    
     private const float NameColumnWidth     = 220f;
     private const float TypeColumnWidth     = 220f;
     private const float CategoryColumnWidth = 220f;
-
-    // UI state
-    private string renameBuffer        = string.Empty;
-    private string searchText          = "";
-    private string tagFilter           = "";
-    private string typeFilter          = "";
-    private Vector2 listScroll         = Vector2.zero;
-    private Vector2 detailsScroll      = Vector2.zero;
+    
+    private string renameBuffer = string.Empty;
+    private string searchText = "";
+    private string tagFilter = "";
+    private string typeFilter = "";
+    private Vector2 listScroll = Vector2.zero;
+    private Vector2 detailsScroll = Vector2.zero;
     private AssetMetadata selectedAsset;
-
-    // Multi-selection
+    
     private HashSet<string> selectedGuids = new HashSet<string>();
-
-    // Batch edit (selected assets)
+    
     private string batchCategoryInput = "";
-    private string batchTagInput      = "";
-
-    // Cached filtered list
+    private string batchTagInput = "";
+    
     private List<AssetMetadata> filteredAssets = new List<AssetMetadata>();
     private bool filtersDirty = true;
-
-    // Pagination
+    
     private const int RowCountPerPage = 100;
     private int currentPage = 0;
 
@@ -85,8 +79,8 @@ public partial class AssetManagerWindow : EditorWindow
 
         while (size >= 1024.0 && unitIndex < units.Length - 1)
         {
-            size     /= 1024.0;
-            unitIndex = unitIndex + 1;
+            size /= 1024.0;
+            unitIndex++;
         }
 
         return string.Format("{0:0.##} {1}", size, units[unitIndex]);
@@ -104,13 +98,13 @@ public partial class AssetManagerWindow : EditorWindow
             return false;
         }
 
-        Type t = AssetDatabase.GetMainAssetTypeAtPath(meta.assetPath);
-        if (t == null)
+        Type type = AssetDatabase.GetMainAssetTypeAtPath(meta.assetPath);
+        if (type == null)
         {
             return false;
         }
 
-        return typeof(GameObject).IsAssignableFrom(t);
+        return typeof(GameObject).IsAssignableFrom(type);
     }
 
     private void MarkDatabaseDirtyAndSave()
@@ -125,10 +119,10 @@ public partial class AssetManagerWindow : EditorWindow
     {
         if (rect.Contains(Event.current.mousePosition))
         {
-            Color old = GUI.color;
-            GUI.color = new Color(0.25f, 0.35f, 0.55f, 0.25f); // light blue-ish hover
+            Color originalColor = GUI.color;
+            GUI.color = new Color(0.25f, 0.35f, 0.55f, 0.25f);
             GUI.DrawTexture(rect, Texture2D.whiteTexture);
-            GUI.color = old;
+            GUI.color = originalColor;
         }
     }
 }

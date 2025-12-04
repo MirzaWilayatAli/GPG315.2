@@ -70,12 +70,6 @@ public static class AssetIndexer
                 continue;
             }
 
-            // Skip dlls
-            /*if (path.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
-            {
-                continue;
-            }*/
-
             UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
 
             string ext = Path.GetExtension(path).ToLowerInvariant();
@@ -127,7 +121,7 @@ public static class AssetIndexer
             meta.assetType = typeName;
             meta.fileSizeBytes = fileSizeBytes;
             meta.audioLengthSeconds = audioLengthSeconds;
-            meta.lastIndexed = DateTime.Now;
+            meta.LastIndexed = DateTime.Now;
 
             // 4) If we had metadata for this GUID before, copy over user-editable fields
             AssetMetadata old;

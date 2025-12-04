@@ -101,7 +101,6 @@ public static class VersionControlIntegration
 
     private static string ParseGitStatusCode(string code)
     {
-        // See: https://git-scm.com/docs/git-status#_short_format
         switch (code)
         {
             case "??": return "Untracked";

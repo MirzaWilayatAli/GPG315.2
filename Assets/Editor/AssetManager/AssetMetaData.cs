@@ -30,5 +30,5 @@ public class AssetMetadata
     public string vcsStatus;
     public string vcsSystem;
     
-    public DateTime lastIndexed;
+    public DateTime LastIndexed;
 }
