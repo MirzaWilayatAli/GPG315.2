@@ -29,8 +29,6 @@ public partial class AssetManagerWindow
         EditorGUILayout.EndVertical();
     }
 
-    // ---------- Filters ----------
-
     private void DrawFilterSection()
     {
         EditorGUILayout.LabelField("Filters", EditorStyles.boldLabel);
@@ -64,7 +62,7 @@ public partial class AssetManagerWindow
         EditorGUILayout.EndHorizontal();
     }
 
-    // ---------- Filtering logic ----------
+    // Filtering logic here
 
     private void EnsureFilteredAssets()
     {
@@ -204,17 +202,17 @@ public partial class AssetManagerWindow
         currentPage  = 0;
     }
 
-    // ---------- Pagination ----------
+    // Pagination
 
     private void DrawPaginationSection()
     {
-        int total      = filteredAssets.Count;
+        int total = filteredAssets.Count;
         int totalPages = 1;
 
         if (total > 0)
         {
             float pages = total / (float)RowCountPerPage;
-            totalPages  = Mathf.CeilToInt(pages);
+            totalPages = Mathf.CeilToInt(pages);
         }
 
         if (totalPages < 1)
@@ -237,20 +235,19 @@ public partial class AssetManagerWindow
         GUI.enabled = currentPage > 0;
         if (GUILayout.Button("Prev", GUILayout.Width(50)))
         {
-            currentPage = currentPage - 1;
+            currentPage--;
         }
 
         GUI.enabled = currentPage < totalPages - 1;
         if (GUILayout.Button("Next", GUILayout.Width(50)))
         {
-            currentPage = currentPage + 1;
+            currentPage++;
         }
         GUI.enabled = true;
 
         EditorGUILayout.EndHorizontal();
     }
-
-    // ---------- List headers & rows ----------
+    
 
     private void DrawListHeaders()
     {
@@ -271,7 +268,7 @@ public partial class AssetManagerWindow
 
         int total = filteredAssets.Count;
         int startIndex = currentPage * RowCountPerPage;
-        int endIndex   = startIndex + RowCountPerPage;
+        int endIndex = startIndex + RowCountPerPage;
 
         if (startIndex < 0)
         {
@@ -312,7 +309,7 @@ public partial class AssetManagerWindow
             {
                 selectedGuids.Add(meta.guid);
                 selectedAsset = meta;
-                renameBuffer  = meta.assetName;
+                renameBuffer = meta.assetName;
             }
             else
             {
@@ -323,12 +320,11 @@ public partial class AssetManagerWindow
                 }
             }
         }
-
-        // Name button (does not affect multi-select, just focuses)
+        
         if (GUILayout.Button(meta.assetName, EditorStyles.label, GUILayout.Width(NameColumnWidth)))
         {
             selectedAsset = meta;
-            renameBuffer  = meta.assetName;
+            renameBuffer = meta.assetName;
 
             Object obj = AssetDatabase.LoadMainAssetAtPath(meta.assetPath);
             if (obj != null)

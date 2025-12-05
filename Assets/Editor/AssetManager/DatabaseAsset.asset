@@ -19,8 +19,7 @@ MonoBehaviour:
     assetType: OGG
     fileSizeBytes: 2310246
     audioLengthSeconds: 200.34134
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -36,8 +35,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 1523870
     audioLengthSeconds: 5.2909374
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -53,8 +51,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 247300
     audioLengthSeconds: 1.4014059
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -70,8 +67,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 1528016
     audioLengthSeconds: 5.3052917
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -87,8 +83,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 1499192
     audioLengthSeconds: 7.8078127
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -104,8 +99,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 403694
     audioLengthSeconds: 1.4013958
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -121,8 +115,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 397288
     audioLengthSeconds: 2.0687292
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -138,8 +131,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 105794
     audioLengthSeconds: 0.36702085
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -155,8 +147,7 @@ MonoBehaviour:
     assetType: WAV
     fileSizeBytes: 506200
     audioLengthSeconds: 2.6359792
-    tags:
-    - Audio
+    tags: []
     category: Audio
     customField1Label: Designer
     customField1Value: 
@@ -170,7 +161,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/AssetDatabaseAsset.cs
     assetName: AssetDatabaseAsset
     assetType: MonoScript
-    fileSizeBytes: 542
+    fileSizeBytes: 183
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -181,7 +172,7 @@ MonoBehaviour:
     directDependencies: []
     directDependants:
     - bd0fae8a147ab9d4487e948eebeb25d1
-    vcsStatus: Up to date
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: 374b6d64fb5af6b45905b55fb577d346
     assetPath: Assets/Editor/AssetManager/AssetDatabaseUtility.cs
@@ -203,7 +194,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/AssetIndexer.cs
     assetName: AssetIndexer
     assetType: MonoScript
-    fileSizeBytes: 10071
+    fileSizeBytes: 10059
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -219,7 +210,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowBatchSelect.cs
     assetName: AssetManagerWindowBatchSelect
     assetType: MonoScript
-    fileSizeBytes: 3428
+    fileSizeBytes: 3306
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -229,13 +220,13 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Up to date
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: 77aea50666c079f4b9de02ec4539f588
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowBatchTools.cs
     assetName: AssetManagerWindowBatchTools
     assetType: MonoScript
-    fileSizeBytes: 6576
+    fileSizeBytes: 5148
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -245,13 +236,13 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Up to date
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: 816092842bff40443ae74183efefe671
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowCore.cs
     assetName: AssetManagerWindowCore
     assetType: MonoScript
-    fileSizeBytes: 3455
+    fileSizeBytes: 3394
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -267,7 +258,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowDetailsPanel.cs
     assetName: AssetManagerWindowDetailsPanel
     assetType: MonoScript
-    fileSizeBytes: 10619
+    fileSizeBytes: 10509
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -277,13 +268,13 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Up to date
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: 78ad2519bdf76344fbeb25fdfde0f3ea
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowFiltersAndList.cs
     assetName: AssetManagerWindowFiltersAndList
     assetType: MonoScript
-    fileSizeBytes: 10393
+    fileSizeBytes: 10165
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -293,13 +284,13 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Up to date
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: 0a2c0f1fb3626e14c9e95d3a9e6da6af
     assetPath: Assets/Editor/AssetManager/AssetManagerWindowToolbar.cs
     assetName: AssetManagerWindowToolbar
     assetType: MonoScript
-    fileSizeBytes: 2596
+    fileSizeBytes: 2316
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -309,7 +300,7 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Up to date
+    vcsStatus: Modified
     vcsSystem: Git
   - guid: 75a0e73936d92914a9337bb9b90e1f61
     assetPath: Assets/Editor/AssetManager/AssetMetaData.cs
@@ -325,13 +316,13 @@ MonoBehaviour:
     customField2Value: 
     directDependencies: []
     directDependants: []
-    vcsStatus: Modified
+    vcsStatus: Up to date
     vcsSystem: Git
   - guid: bd0fae8a147ab9d4487e948eebeb25d1
     assetPath: Assets/Editor/AssetManager/DatabaseAsset.asset
     assetName: DatabaseAsset
     assetType: AssetDatabaseAsset
-    fileSizeBytes: 19982
+    fileSizeBytes: 19885
     audioLengthSeconds: 0
     tags: []
     category: 
@@ -348,7 +339,7 @@ MonoBehaviour:
     assetPath: Assets/Editor/AssetManager/VersionControlIntegration.cs
     assetName: VersionControlIntegration
     assetType: MonoScript
-    fileSizeBytes: 3750
+    fileSizeBytes: 3612
     audioLengthSeconds: 0
     tags: []
     category: script
@@ -650,8 +641,7 @@ MonoBehaviour:
     assetType: Texture2D
     fileSizeBytes: 8380
     audioLengthSeconds: 0
-    tags:
-    - sprites
+    tags: []
     category: 
     customField1Label: Designer
     customField1Value: 

@@ -44,8 +44,7 @@ public static class VersionControlIntegration
             process.Start();
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
-
-            // Build lookup: "Assets/..." -> (code, path)
+            
             var map = new Dictionary<string, string>();
 
             using (var reader = new StringReader(output))
@@ -53,14 +52,18 @@ public static class VersionControlIntegration
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    if (line.Length < 4) continue;
-                    // Format: "XY path"
-                    string code = line.Substring(0, 2);
-                    string path = line.Substring(3).Replace('\\', '/'); // normalize
-
-                    // Want Unity-style path, relative to project root
-                    if (!path.StartsWith("Assets/"))
+                    if (line.Length < 4)
+                    {
                         continue;
+                    }
+
+                    string code = line.Substring(0, 2);
+                    string path = line.Substring(3).Replace('\\', '/');
+
+                    if (!path.StartsWith("Assets/"))
+                    {
+                        continue;
+                    }
 
                     map[path] = code.Trim();
                 }
@@ -80,7 +83,6 @@ public static class VersionControlIntegration
                 }
                 else
                 {
-                    // Not in status output => tracked & clean (most of the time)
                     meta.vcsStatus = "Up to date";
                 }
             }

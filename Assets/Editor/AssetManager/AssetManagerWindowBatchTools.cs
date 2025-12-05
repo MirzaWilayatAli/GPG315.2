@@ -4,23 +4,22 @@ using UnityEngine;
 
 public partial class AssetManagerWindow
 {
-    // Optional separate fields for visible batch edits
     private string visibleCategoryInput = "";
-    private string visibleTagInput      = "";
+    private string visibleTagInput = "";
 
     private void DrawBatchToolsForVisible()
     {
         EditorGUILayout.LabelField("Batch Tools (Visible Assets)", EditorStyles.boldLabel);
-
-        // --- Reimport all visible assets ---
+        
+        
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Reimport Visible", GUILayout.Width(140)))
         {
             BatchReimportVisible();
         }
         EditorGUILayout.EndHorizontal();
-
-        // --- Category for all visible assets ---
+        
+        
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Category For Visible", GUILayout.Width(140));
         visibleCategoryInput = EditorGUILayout.TextField(visibleCategoryInput, GUILayout.Width(180));
@@ -37,7 +36,7 @@ public partial class AssetManagerWindow
         GUI.enabled = previousEnabled;
         EditorGUILayout.EndHorizontal();
 
-        // --- Tags for all visible assets ---
+        // Tags for all visible assets
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Tag For Visible", GUILayout.Width(140));
         visibleTagInput = EditorGUILayout.TextField(visibleTagInput, GUILayout.Width(180));
@@ -187,47 +186,5 @@ public partial class AssetManagerWindow
 
         MarkDatabaseDirtyAndSave();
         filtersDirty = true;
-    }
-
-    // Optional: later you can use this for texture import settings
-    private void BatchApplyTextureSettingsVisible(int maxSize, TextureImporterCompression compression)
-    {
-        EnsureFilteredAssets();
-
-        try
-        {
-            AssetDatabase.StartAssetEditing();
-
-            for (int i = 0; i < filteredAssets.Count; i++)
-            {
-                AssetMetadata meta = filteredAssets[i];
-                if (meta == null)
-                {
-                    continue;
-                }
-
-                if (string.IsNullOrEmpty(meta.assetPath))
-                {
-                    continue;
-                }
-
-                TextureImporter importer = AssetImporter.GetAtPath(meta.assetPath) as TextureImporter;
-                if (importer == null)
-                {
-                    continue;
-                }
-
-                importer.maxTextureSize     = maxSize;
-                importer.textureCompression = compression;
-
-                EditorUtility.SetDirty(importer);
-                AssetDatabase.ImportAsset(meta.assetPath, ImportAssetOptions.ForceUpdate);
-            }
-        }
-        finally
-        {
-            AssetDatabase.StopAssetEditing();
-            AssetDatabase.SaveAssets();
-        }
     }
 }

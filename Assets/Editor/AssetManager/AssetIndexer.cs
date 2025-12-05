@@ -10,7 +10,7 @@ public static class AssetIndexer
     {
         AssetDatabaseAsset db = AssetDatabaseUtility.LoadOrCreateDatabase();
 
-        // 1) Cache old metadata by GUID so we can preserve tags etc.
+        // 1) Cache old metadata by GUID so we can preserve tags and categories
         Dictionary<string, AssetMetadata> oldMetaDataByGuid = new Dictionary<string, AssetMetadata>();
 
         if (db.assets != null)
@@ -20,16 +20,14 @@ public static class AssetIndexer
                 AssetMetadata meta = db.assets[i];
                 if (meta != null && !string.IsNullOrEmpty(meta.guid))
                 {
-                    // last wins, but that should not matter
                     oldMetaDataByGuid[meta.guid] = meta;
                 }
             }
         }
 
-        // 2) Start fresh asset list
+        // 2-Start fresh asset list
         db.assets.Clear();
-
-        // Decide where to search
+        
         string[] searchInFolders;
 
         if (onlySelectedFolders)
@@ -41,13 +39,11 @@ public static class AssetIndexer
             }
             else
             {
-                // Fallback
                 searchInFolders = new string[] { "Assets" };
             }
         }
         else
         {
-            // Hard-lock to Assets root only
             searchInFolders = new string[] { "Assets" };
         }
 
@@ -58,7 +54,7 @@ public static class AssetIndexer
             string guid = guids[i];
             string path = AssetDatabase.GUIDToAssetPath(guid);
 
-            // Skip folders entirely
+            // Skip folders
             if (AssetDatabase.IsValidFolder(path))
             {
                 continue;
@@ -115,15 +111,21 @@ public static class AssetIndexer
             AssetMetadata meta = new AssetMetadata();
             meta.guid = guid;
             meta.assetPath = path;
-            meta.assetName = (obj != null)
-                                      ? obj.name
-                                      : Path.GetFileNameWithoutExtension(path);
+            if (obj != null)
+            {
+                meta.assetName = obj.name;
+            }
+            else
+            {
+                string fileName = Path.GetFileNameWithoutExtension(path);
+                meta.assetName = fileName;
+            }
             meta.assetType = typeName;
             meta.fileSizeBytes = fileSizeBytes;
             meta.audioLengthSeconds = audioLengthSeconds;
             meta.LastIndexed = DateTime.Now;
 
-            // 4) If we had metadata for this GUID before, copy over user-editable fields
+            // 4-If we had metadata for this GUID before, copy over user-editable fields
             AssetMetadata old;
             if (oldMetaDataByGuid.TryGetValue(guid, out old) && old != null)
             {
@@ -138,20 +140,17 @@ public static class AssetIndexer
                 }
 
                 meta.category = old.category;
-
-                // Custom fields
+                
                 meta.customField1Label = old.customField1Label;
                 meta.customField1Value = old.customField1Value;
                 meta.customField2Label = old.customField2Label;
                 meta.customField2Value = old.customField2Value;
-
-                // Version control info
+                
                 meta.vcsStatus = old.vcsStatus;
                 meta.vcsSystem = old.vcsSystem;
             }
             else
             {
-                // Make sure tags is at least an empty list so you don't get null refs
                 meta.tags = new List<string>();
             }
 
@@ -226,37 +225,37 @@ public static class AssetIndexer
                 continue;
             }
 
-            string[] deps = AssetDatabase.GetDependencies(assetPath, false);
-            if (deps == null)
+            string[] dependencies = AssetDatabase.GetDependencies(assetPath, false);
+            if (dependencies == null)
             {
                 continue;
             }
 
-            for (int d = 0; d < deps.Length; d++)
+            for (int d = 0; d < dependencies.Length; d++)
             {
-                string depPath = deps[d];
+                string dependencyPath = dependencies[d];
 
-                // Only care about dependencies that are also inside Assets/
-                if (!depPath.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
+                // Only care about dependencies that are also inside Assets
+                if (!dependencyPath.StartsWith("Assets/", StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
-                string depGuid = AssetDatabase.AssetPathToGUID(depPath);
-                if (string.IsNullOrEmpty(depGuid))
+                string dependencyGuid = AssetDatabase.AssetPathToGUID(dependencyPath);
+                if (string.IsNullOrEmpty(dependencyGuid))
                 {
                     continue;
                 }
 
                 // Skip self
-                if (depGuid == meta.guid)
+                if (dependencyGuid == meta.guid)
                 {
                     continue;
                 }
 
-                if (!meta.directDependencies.Contains(depGuid))
+                if (!meta.directDependencies.Contains(dependencyGuid))
                 {
-                    meta.directDependencies.Add(depGuid);
+                    meta.directDependencies.Add(dependencyGuid);
                 }
             }
         }
@@ -277,22 +276,22 @@ public static class AssetIndexer
 
             for (int d = 0; d < meta.directDependencies.Count; d++)
             {
-                string depGuid = meta.directDependencies[d];
-                AssetMetadata depMeta;
+                string directDependencyGuid = meta.directDependencies[d];
+                AssetMetadata dependencyMetaData;
 
-                if (!guidToMeta.TryGetValue(depGuid, out depMeta) || depMeta == null)
+                if (!guidToMeta.TryGetValue(directDependencyGuid, out dependencyMetaData) || dependencyMetaData == null)
                 {
                     continue;
                 }
 
-                if (depMeta.directDependants == null)
+                if (dependencyMetaData.directDependants == null)
                 {
-                    depMeta.directDependants = new List<string>();
+                    dependencyMetaData.directDependants = new List<string>();
                 }
 
-                if (!depMeta.directDependants.Contains(meta.guid))
+                if (!dependencyMetaData.directDependants.Contains(meta.guid))
                 {
-                    depMeta.directDependants.Add(meta.guid);
+                    dependencyMetaData.directDependants.Add(meta.guid);
                 }
             }
         }
@@ -321,7 +320,6 @@ public static class AssetIndexer
                 }
             }
         }
-
         return folders.ToArray();
     }
 }

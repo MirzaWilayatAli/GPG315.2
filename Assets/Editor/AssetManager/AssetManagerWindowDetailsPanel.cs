@@ -252,7 +252,7 @@ public partial class AssetManagerWindow
         }
     }
 
-    // ---------- Helpers for actions ----------
+    // Helpers methods
 
     private void RenameSelectedAsset()
     {
@@ -268,8 +268,7 @@ public partial class AssetManagerWindow
         }
 
         newName = newName.Trim();
-        if (string.IsNullOrEmpty(newName) ||
-            newName == selectedAsset.assetName)
+        if (string.IsNullOrEmpty(newName) || newName == selectedAsset.assetName)
         {
             return;
         }
@@ -301,7 +300,7 @@ public partial class AssetManagerWindow
         }
 
         string projectRoot = Directory.GetParent(Application.dataPath).FullName;
-        string fullPath    = Path.Combine(projectRoot, selectedAsset.assetPath);
+        string fullPath = Path.Combine(projectRoot, selectedAsset.assetPath);
 
         if (File.Exists(fullPath))
         {
@@ -309,9 +308,7 @@ public partial class AssetManagerWindow
         }
         else
         {
-            EditorUtility.DisplayDialog("Open Failed",
-                "File not found on disk:\n" + fullPath,
-                "OK");
+            EditorUtility.DisplayDialog("Open Failed", "File not found on disk:\n" + fullPath, "OK");
         }
     }
 
@@ -325,9 +322,7 @@ public partial class AssetManagerWindow
         GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(selectedAsset.assetPath);
         if (prefab == null)
         {
-            EditorUtility.DisplayDialog("Add to Scene",
-                "Selected asset is not a GameObject/Prefab.",
-                "OK");
+            EditorUtility.DisplayDialog("Add to Scene", "Selected asset is not a GameObject/Prefab.", "OK");
             return;
         }
 

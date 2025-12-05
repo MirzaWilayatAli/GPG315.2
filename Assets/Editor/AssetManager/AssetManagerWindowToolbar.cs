@@ -18,14 +18,6 @@ public partial class AssetManagerWindow
             MarkDatabaseDirtyAndSave();
         }
 
-        // Rebuild only from selected folders
-        if (GUILayout.Button("Refresh Selected Folders", EditorStyles.toolbarButton))
-        {
-            AssetIndexer.RebuildIndex(true);
-            filtersDirty = true;
-            currentPage  = 0;
-        }
-
         GUILayout.FlexibleSpace();
 
         DrawSearchField();
@@ -36,7 +28,7 @@ public partial class AssetManagerWindow
     private void DrawSearchField()
     {
         float searchHeight = 20f;
-        float searchWidth  = 220f;
+        float searchWidth = 220f;
 
         Rect searchRect = GUILayoutUtility.GetRect(
             searchWidth,
@@ -45,18 +37,18 @@ public partial class AssetManagerWindow
         );
 
         GUIStyle searchStyle = new GUIStyle(GUI.skin.textField);
-        searchStyle.fontSize    = 12;
+        searchStyle.fontSize = 12;
         searchStyle.fixedHeight = searchHeight;
-        searchStyle.padding     = new RectOffset(6, 6, 4, 4);
+        searchStyle.padding = new RectOffset(6, 6, 4, 4);
 
         GUI.SetNextControlName("AssetManagerSearchField");
         string newSearch = GUI.TextField(searchRect, searchText, searchStyle);
 
         if (newSearch != searchText)
         {
-            searchText   = newSearch;
+            searchText = newSearch;
             filtersDirty = true;
-            currentPage  = 0;
+            currentPage = 0;
         }
 
         if (string.IsNullOrEmpty(searchText) &&

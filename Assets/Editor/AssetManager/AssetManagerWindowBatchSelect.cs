@@ -84,27 +84,19 @@ public partial class AssetManagerWindow
         for (int i = 0; i < databaseAsset.assets.Count; i++)
         {
             AssetMetadata meta = databaseAsset.assets[i];
-            if (meta == null)
-            {
-                continue;
-            }
+            
+            if (meta == null) { continue; }
 
-            if (!selectedGuids.Contains(meta.guid))
-            {
-                continue;
-            }
+            if (!selectedGuids.Contains(meta.guid)) { continue; }
 
-            if (meta.tags == null)
-            {
-                meta.tags = new List<string>();
-            }
+            if (meta.tags == null) { meta.tags = new List<string>(); }
 
             bool already = false;
-            for (int t = 0; t < meta.tags.Count; t++)
+            
+            for (int x = 0; x < meta.tags.Count; x++)
             {
-                string existing = meta.tags[t];
-                if (!string.IsNullOrEmpty(existing) &&
-                    existing.ToLowerInvariant() == tagLower)
+                string existing = meta.tags[x];
+                if (!string.IsNullOrEmpty(existing) && existing.ToLowerInvariant() == tagLower)
                 {
                     already = true;
                     break;

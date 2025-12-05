@@ -63,8 +63,7 @@ public partial class AssetManagerWindow : EditorWindow
         DrawDetailsPanel();
         EditorGUILayout.EndHorizontal();
     }
-
-    // ---------- Utility helpers shared by partials ----------
+    
 
     private static string FormatFileSize(long bytes)
     {
